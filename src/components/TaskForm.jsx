@@ -1,15 +1,6 @@
-/**
- * @typedef {Object} Task
- * @property {string} id
- * @property {string} title
- * @property {string} description
- * @property {string[]} tags
- * @property {string} dueDate  // ISO string
- * @property {'low'|'medium'|'high'} priority
- */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "@reduxjs/toolkit";
 import { addTask } from "../store/tasksSlice";
 import TaskFormValidate from "../utils/taskFormValidate";
 import { useSelector } from "react-redux";
@@ -52,7 +43,7 @@ const TaskForm = () => {
       .filter(Boolean);
 
     const newTask = {
-      id: uuidv4(),
+      id: nanoid(),
       title: formData.title,
       description: formData.description,
       dueDate: formData.dueDate,
