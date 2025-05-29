@@ -4,6 +4,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { addTask } from "../store/tasksSlice";
 import TaskFormValidate from "../utils/taskFormValidate";
 import { useSelector } from "react-redux";
+import DateInput from "./DateInput";
 
 const TaskForm = () => {
   const tasks = useSelector((state) => state.tasks.tasks) || [];
@@ -11,7 +12,7 @@ const TaskForm = () => {
     title: "",
     description: "",
     tags: "",
-    dueDate: "",
+    dueDate: null,
     priority: "low",
   });
   const [error, setError] = useState(null);
@@ -57,7 +58,7 @@ const TaskForm = () => {
       title: "",
       description: "",
       tags: "",
-      dueDate: "",
+      dueDate: null,
       priority: "low",
     });
   };
@@ -91,13 +92,11 @@ const TaskForm = () => {
         placeholder="Теги (через запятую)"
         className="placeholder:p-2 focus:outline-none focus:ring-2 focus:ring-border_color border hover:border-[#374151]"
       />
-      <input
-        type="date"
-        value={formData.dueDate}
-        onChange={handleChange}
-        name="dueDate"
-        placeholder="Дата выполнения"
-        className="focus:outline-none focus:ring-2 focus:ring-border_color border hover:border-[#374151]"
+      <DateInput
+        dueDate={formData.dueDate}
+        setDueDate={(date) =>
+          setFormData((prev) => ({ ...prev, dueDate: date }))
+        }
       />
       <select
         name="priority"
