@@ -24,7 +24,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
   }));
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 mb-4">
+    <div className="flex flex-col md:flex-row gap-4 mb-4 h-auto">
       <input
         type="text"
         placeholder="Поиск..."
@@ -54,7 +54,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
         )}
         onChange={handleTagChange}
         placeholder="Выберите теги..."
-        className="w-full md:w-72 h-full"
+        className="w-full md:w-72"
         styles={{
           control: (base, state) => ({
             ...base,
@@ -64,6 +64,10 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
           }),
           indicatorSeparator: () => ({
             display: "none",
+          }),
+          indicatorsContainer: (base) => ({
+            ...base,
+            height: "48px",
           }),
         }}
       />
@@ -81,7 +85,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
       </select>
       <button
         onClick={handleResetFilters}
-        className="w-[30%] self-center bg-button_bg hover:bg-border_color rounded-lg p-2"
+        className="flex justify-center items-center h-10 py-6 self-center bg-button_bg hover:bg-border_color rounded-lg p-2"
       >
         Сбросить фильтры
       </button>

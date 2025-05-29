@@ -11,6 +11,9 @@ export default {
         button_bg: "#9ca3af",
         error_color: "#b91c1c",
       },
+      fontFamily: {
+        robotoMono: ['"Roboto Mono"', "monospace"],
+      },
     },
   },
   plugins: [],
