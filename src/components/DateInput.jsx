@@ -10,7 +10,6 @@ const DateInput = ({ dueDate, setDueDate }) => {
       placeholderText="Выберите дату"
       className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-border_color"
       isClearable
-      readOnly
       showYearDropdown
       scrollableMonthYearDropdown
     />

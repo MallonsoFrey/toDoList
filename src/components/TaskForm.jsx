@@ -97,6 +97,7 @@ const TaskForm = () => {
         setDueDate={(date) =>
           setFormData((prev) => ({ ...prev, dueDate: date }))
         }
+        onKeyDown={(e) => e.preventDefault()}
       />
       <select
         name="priority"
