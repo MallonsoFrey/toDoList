@@ -41,20 +41,27 @@ const TaskCard = ({ id, title, description, tags, priority, dueDate }) => {
       layout
       transition={{ duration: 0.25, ease: "easeInOut" }}
       className={`p-4 rounded-md shadow cursor-grab select-none bg-white transition-all ${
-        isOverdue ? "border-2 border-red-500" : "border border-slate-300"
+        isOverdue ? "border-2 border-error_color" : "border border-form_bg"
       }`}
     >
       <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <p className="text-gray-700 mb-1">{description}</p>
-      <p className="text-sm text-gray-600 mb-1">Теги: {tags.join(", ")}</p>
-      <p className="text-sm">Срок: {dayjs(dueDate).format("DD.MM.YYYY")}</p>
-      <p className="text-sm capitalize mb-2">Приоритет: {priority}</p>
+      <p className="mb-1">{description}</p>
+      <p className="text-sm mb-1">
+        <span className="font-bold">Теги:</span> {tags.join(", ")}
+      </p>
+      <p className="text-sm mb-1">
+        <span className="font-bold">Срок:</span>{" "}
+        {dayjs(dueDate).format("DD.MM.YYYY")}
+      </p>
+      <p className="text-sm capitalize mb-2">
+        <span className="font-bold">Приоритет:</span> {priority}
+      </p>
       <button
         onClick={(e) => {
           e.stopPropagation();
           handleDelete();
         }}
-        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+        className="bg-[#ef4444] text-white px-3 py-1 rounded hover:error_color hover:bg-error_color"
       >
         Удалить
       </button>

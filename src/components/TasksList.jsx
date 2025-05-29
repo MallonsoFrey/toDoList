@@ -16,11 +16,20 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { AnimatePresence } from "framer-motion";
+import Pagination from "./Pagination";
 
 const TasksList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
+  const [currentPage, setCurrentPage] = useState(1);
   const allTags = Array.from(new Set(tasks.flatMap((task) => task.tags)));
   const today = dayjs().startOf("day");
+
+  const cardsPerPage = 6;
+  const totalPages = Math.ceil(tasks.length / cardsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const [filters, setFilters] = useState({
     search: "",
@@ -89,6 +98,11 @@ const TasksList = () => {
     .map((id) => filteredTasks.find((t) => t.id === id))
     .filter(Boolean);
 
+  const paginatedTasks = orderedTasks.slice(
+    (currentPage - 1) * cardsPerPage,
+    currentPage * cardsPerPage
+  );
+
   return (
     <div className="flex flex-col items-center gap-4">
       <FiltersBar filters={filters} setFilters={setFilters} allTags={allTags} />
@@ -106,7 +120,7 @@ const TasksList = () => {
           >
             <div className="grid gap-4 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence>
-                {orderedTasks.map((task) => (
+                {paginatedTasks.map((task) => (
                   <TaskCard key={task.id} {...task} />
                 ))}
               </AnimatePresence>
@@ -114,6 +128,11 @@ const TasksList = () => {
           </SortableContext>
         </DndContext>
       )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

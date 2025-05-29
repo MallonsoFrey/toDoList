@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import { generateDummyTasks } from "../utils/generateDummyTasks";
+import { generateDummyTasks } from "../utils/generateDummyTasks";
 /*для тестирования 50 задач написать tasks: generateDummyTasks(50) в initialState*/
 
-const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+//const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const initialState = {
-  tasks: savedTasks,
+  tasks: generateDummyTasks(50),
 };
 
 const tasksSlice = createSlice({

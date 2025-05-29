@@ -28,14 +28,14 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
       <input
         type="text"
         placeholder="Поиск..."
-        className="p-2 rounded border"
+        className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-border_color hover:border-border_color"
         value={filters.search}
         onChange={(e) =>
           setFilters((prev) => ({ ...prev, search: e.target.value }))
         }
       />
       <select
-        className="p-2 rounded border"
+        className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-border_color hover:border-border_color"
         value={filters.priority}
         onChange={(e) =>
           setFilters((prev) => ({ ...prev, priority: e.target.value }))
@@ -54,10 +54,21 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
         )}
         onChange={handleTagChange}
         placeholder="Выберите теги..."
-        className="w-full md:w-72"
+        className="w-full md:w-72 h-full"
+        styles={{
+          control: (base, state) => ({
+            ...base,
+            borderColor: state.isFocused ? "border_color" : "",
+            boxShadow: state.isFocused ? "0 0 0 3px border_color" : "none",
+            outline: "none",
+          }),
+          indicatorSeparator: () => ({
+            display: "none",
+          }),
+        }}
       />
       <select
-        className="p-2 rounded border"
+        className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-border_color hover:border-border_color"
         value={filters.dateFilter}
         onChange={(e) =>
           setFilters((prev) => ({ ...prev, dateFilter: e.target.value }))
@@ -70,7 +81,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
       </select>
       <button
         onClick={handleResetFilters}
-        className="self-center grow bg-indigo-100 rounded-lg p-2"
+        className="w-[30%] self-center bg-button_bg hover:bg-border_color rounded-lg p-2"
       >
         Сбросить фильтры
       </button>
