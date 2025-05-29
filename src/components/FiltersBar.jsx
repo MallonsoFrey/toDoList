@@ -5,7 +5,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
     setFilters({
       search: "",
       priority: "",
-      dueDate: "",
+      dueDate: null,
       selectedTags: [],
     });
   };
@@ -24,7 +24,7 @@ const FiltersBar = ({ filters, setFilters, allTags }) => {
   }));
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 mb-4 h-auto">
+    <div className="flex flex-col md:flex-row gap-4 my-4 h-auto">
       <input
         type="text"
         placeholder="Поиск..."
